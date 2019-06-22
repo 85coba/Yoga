@@ -32,6 +32,45 @@ window.addEventListener('DOMContentLoaded', function(){
                     }
                 }
             }
-        })
+        });
 
+        let deadLine = "2019-06-25";
+
+        function getTimeRemaining(endtime) {
+            let t = Date.parse(endtime) - Date.parse(new Date()),
+                    seconds = Math.floor( (t/1000) % 60 ) ,
+                    minutes = Math.floor( (t/1000/60) % 60 ),
+                    hours = Math.floor( (t/ (1000 * 60 * 60) ) );
+            return {
+                'total': t,
+                'hours': (hours < 10)? '0' + hours : hours,
+                'minutes': (minutes < 10)? '0' + minutes : minutes,
+                'seconds': (seconds < 10)? '0' + seconds : seconds
+            };   
+        }
+
+        function setClock(id, deadLine) {
+            let timer = document.getElementById(id),
+                hours = timer.querySelector('.hours'),
+                minutes = timer.querySelector('.minutes'),
+                seconds = timer.querySelector('.seconds'),
+                timeInterval = setInterval(updateClock, 1000);
+
+            function updateClock() {
+                let t = getTimeRemaining(deadLine);
+
+                if (t.total <= 0) {
+                    hours.textContent = '00';
+                    minutes.textContent = '00';
+                    seconds.textContent = '00';
+                    clearInterval(timeInterval);
+                } else {
+                    hours.textContent = t.hours;
+                    minutes.textContent = t.minutes;
+                    seconds.textContent = t.seconds;
+                }
+            }
+        }
+
+        setClock('timer', deadLine);
 });
