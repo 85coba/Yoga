@@ -107,17 +107,15 @@ window.addEventListener('DOMContentLoaded', () => {
         failure: 'Что-то пошло не так...'
     };
 
-    let form = document.querySelector('.main-form'),
+    let formCallback = document.querySelector('.main-form'),
+        formContact = document.getElementById('form'),
         input = form.getElementsByTagName('input'),
         statusMessage = document.createElement('div');
 
     statusMessage.classList.add('status');
 
-
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        form.appendChild(statusMessage);
-
+    function sendForm () {
+        
         let request = new XMLHttpRequest();
         console.log('start request');
         request.open('POST', 'server.php');
@@ -146,5 +144,19 @@ window.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < input.length; i++) {
             input[i].value = '';
         }
+    }
+
+    formCallback.addEventListener('submit', function (event) {
+        event.preventDefault();
+        formCallback.appendChild(statusMessage);
+        sendForm();
     });
+
+    formContact.addEventListener('submit', function (event) {
+        event.preventDefault();
+        formContact.appendChild(statusMessage);
+        sendForm();
+    });
+
+
 });
