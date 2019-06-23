@@ -73,4 +73,33 @@ window.addEventListener('DOMContentLoaded', function(){
         }
 
         setClock('timer', deadLine);
+        
+        //Modal window
+        let more = document.querySelector('.more'),
+            overlay = document.querySelector('.overlay'),
+            close = document.querySelector('.popup-close');
+
+        function showModal(){
+            overlay.style.display = 'block';
+            this.classList.add('more-splash');
+            document.body.style.overflow = 'hidden'; //Block to scroll body while open this modal window
+        };
+        
+        more.addEventListener('click', function(){
+            showModal.call(this);
+        });
+
+        close.addEventListener('click', function(){
+            overlay.style.display = 'none';
+            more.classList.remove('more-splash');
+            document.body.style.overflow = '';            
+        });
+
+        let desBtn = document.querySelectorAll('.description-btn');
+
+        for (let i = 0; i < desBtn.length; i++){
+            desBtn[i].addEventListener('click', function(){
+                showModal.apply(this);
+            });
+        }
 });
