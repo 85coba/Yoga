@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function(){
+window.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
     let tab = document.querySelectorAll('.info-header-tab'),
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', function(){
             }
         }
 
-        info.addEventListener('click', function(event) {
+        info.addEventListener('click', (event) => {
             let target = event.target;
             if (target && target.classList.contains('info-header-tab')) {
                 for (let i = 0; i < tab.length; i++) {
@@ -75,6 +75,7 @@ window.addEventListener('DOMContentLoaded', function(){
         setClock('timer', deadLine);
         
         //Modal window
+
         let more = document.querySelector('.more'),
             overlay = document.querySelector('.overlay'),
             close = document.querySelector('.popup-close');
@@ -85,11 +86,9 @@ window.addEventListener('DOMContentLoaded', function(){
             document.body.style.overflow = 'hidden'; //Block to scroll body while open this modal window
         };
         
-        more.addEventListener('click', function(){
-            showModal.call(this);
-        });
+        more.addEventListener('click', showModal);
 
-        close.addEventListener('click', function(){
+        close.addEventListener('click', () => {
             overlay.style.display = 'none';
             more.classList.remove('more-splash');
             document.body.style.overflow = '';            
@@ -98,8 +97,6 @@ window.addEventListener('DOMContentLoaded', function(){
         let desBtn = document.querySelectorAll('.description-btn');
 
         for (let i = 0; i < desBtn.length; i++){
-            desBtn[i].addEventListener('click', function(){
-                showModal.apply(this);
-            });
+            desBtn[i].addEventListener('click', showModal);
         }
 });
