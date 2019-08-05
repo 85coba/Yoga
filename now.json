@@ -1,0 +1,12 @@
+{
+    "name": "yoga",
+    "version": 2,
+    "build": {
+    },
+    "routes": [
+        { "src": "^/js/(.*)", "dest": "/js/$1" },
+        { "src": "^/css/(.*)", "dest": "/css/$1" },
+        { "src": "^/img/(.*)", "dest": "/img/$1" },
+        { "src": ".*", "dest": "/index.html" }
+    ]
+  }
